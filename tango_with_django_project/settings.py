@@ -106,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = 'rango/login/'
+
 
 
 MEDIA_ROOT = MEDIA_DIR

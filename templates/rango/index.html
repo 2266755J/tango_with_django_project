@@ -4,9 +4,13 @@
 
 {% block body_block %}
     <h1>Rango says...</h1>
-    <div>hey there partner! </div>
+    {% if user.is_authenticated %}
+       hello {{ user.username }}!
+    {% else %}
+        hey there partner!
+    {% endif %}
 
-     {% if categories %}
+    {% if categories %}
         <ul><h2>Most Liked Categories</h2>
             {% for category in categories %}
                 <li>
@@ -14,12 +18,12 @@
                 </li>
             {% endfor %}
         </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
+    {% else %}
+        <strong>There are no categories present.</strong>
+    {% endif %}
         
 
-        {% if pages %}
+    {% if pages %}
         <ul><h2>Most Viewd Pages</h2>
             {% for page in pages %}
                 <li>
@@ -27,8 +31,8 @@
                 </li>
             {% endfor %}
         </ul>
-        {% else %}
+    {% else %}
             <strong>There are no pages present.</strong>
-        {% endif %}
-            <img src="{%static "images/rango.jpg" %}" alt="Picture of Rango" />
+    {% endif %}
+        <img src="{%static "images/rango.jpg" %}" alt="Picture of Rango" />
 {% endblock %}
