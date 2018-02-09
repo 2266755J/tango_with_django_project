@@ -13,7 +13,7 @@ from datetime import datetime
 def index(request):
     request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('views')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories' : category_list, 'pages' :page_list}
 
     visitor_cookie_handler(request)
@@ -149,7 +149,6 @@ def visitor_cookie_handler(request):
         visits = visits + 1
         request.session['last_visit'] = str(datetime.now())
     else:
-        visits = 1
         request.session['last_visit'] = last_visit_cookie
     request.session['visits'] = visits
 
